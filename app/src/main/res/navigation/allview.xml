@@ -2,19 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation"
+    android:id="@+id/allview"
     app:startDestination="@id/viewFragment">
 
-    <fragment
-        android:id="@+id/backupFragment"
-        android:name="com.example.wholesalemartdatabase.ui.backup.BackupFragment"
-        android:label="fragment_backup"
-        tools:layout="@layout/fragment_backup" />
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.wholesalemartdatabase.ui.search.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/viewFragment"
         android:name="com.example.wholesalemartdatabase.ui.view.ViewFragment"

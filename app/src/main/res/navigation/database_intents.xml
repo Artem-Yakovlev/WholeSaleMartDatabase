@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/database_intents"
+    app:startDestination="@id/backupFragment">
+
+    <fragment
+        android:id="@+id/backupFragment"
+        android:name="com.example.wholesalemartdatabase.ui.backup.BackupFragment"
+        android:label="fragment_backup"
+        tools:layout="@layout/fragment_backup" />
+</navigation>
