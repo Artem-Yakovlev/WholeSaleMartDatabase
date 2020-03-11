@@ -16,6 +16,7 @@ import com.example.wholesalemartdatabase.R;
 import com.example.wholesalemartdatabase.data.Customer;
 import com.example.wholesalemartdatabase.data.CustomerStatus;
 import com.example.wholesalemartdatabase.ui.mainrecyclerview.MainRecyclerViewAdapter;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -23,11 +24,13 @@ import java.util.ArrayList;
 public class ViewFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_view, container, false);
         recyclerView = root.findViewById(R.id.main_view_recycler_view);
+        floatingActionButton = root.findViewById(R.id.floating_action_button);
         return root;
     }
 
@@ -39,9 +42,24 @@ public class ViewFragment extends Fragment {
         customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
         customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
         customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
-        
+
+        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
+        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
+        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
+
+        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
+        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
+        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
+
+        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
+        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
+        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
+
+
         recyclerView.setAdapter(new MainRecyclerViewAdapter(getContext(), customers));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
                 false));
+
+        floatingActionButton.attachToRecyclerView(recyclerView);
     }
 }
