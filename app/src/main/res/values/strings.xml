@@ -6,4 +6,6 @@
 
     <string name="id">ID:</string>
     <string name="budget">Budget:</string>
+    <string name="general_view">General view</string>
+    <string name="request_compilation">Request compilation</string>
 </resources>

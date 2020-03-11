@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide;
 import com.example.wholesalemartdatabase.R;
 import com.example.wholesalemartdatabase.data.Customer;
 
+import java.text.MessageFormat;
+
 class MainViewHolder extends RecyclerView.ViewHolder {
 
     private View view;
@@ -22,11 +24,13 @@ class MainViewHolder extends RecyclerView.ViewHolder {
 
     void bindData(Customer customer) {
 
-        ((TextView) view.findViewById(R.id.customer_card_name)).setText(customer.getName());
+        ((TextView) view.findViewById(R.id.customer_card_name))
+                .setText(MessageFormat.format("{0} {1}", customer.getName(), customer.getSurname()));
+
         ((TextView) view.findViewById(R.id.customer_card_phone)).setText(customer.getPhone());
 
         ((TextView) view.findViewById(R.id.customer_card_cash))
-                .setText("$ " + customer.getBudget().toString(10));
+                .setText(MessageFormat.format("$ {0}", customer.getBudget().toString(10)));
 
         int statusImageId = 0;
 
