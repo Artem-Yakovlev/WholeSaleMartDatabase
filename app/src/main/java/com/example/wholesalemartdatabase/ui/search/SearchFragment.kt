@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import com.example.wholesalemartdatabase.R
 import kotlinx.android.synthetic.main.fragment_search.*
 
@@ -23,9 +24,11 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preparePhoneInput()
 
+        val navController = NavHostFragment.findNavController(this)
+
         search_request_button.setOnClickListener {
             if (checkCorrectRequest()) {
-
+                navController.navigate(R.id.searchResultFragment)
             }
         }
     }
@@ -93,7 +96,7 @@ class SearchFragment : Fragment() {
             correct = false
         }
 
-        if (!(budget.matches(Regex("[0-9]*")) && Integer.parseInt(budget) > 0)) {
+        if (!(budget.matches(Regex("[0-9]*")) && (budget.isEmpty() || Integer.parseInt(budget) > 0)) ) {
             budget_request_input.error = "Data is not correct"
             correct = false
         }
