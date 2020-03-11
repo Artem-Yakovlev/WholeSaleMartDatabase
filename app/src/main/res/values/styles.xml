@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- First presentation start use button-->
+    <style name="FormButton" parent="Theme.MaterialComponents">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+
 </resources>

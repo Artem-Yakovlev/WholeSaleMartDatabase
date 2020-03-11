@@ -18,4 +18,5 @@
     <string name="gold">Gold</string>
     <string name="choose_status">Choose status:</string>
     <string name="enter_the_data_for_the_request">Enter the data for the request:</string>
+    <string name="search">Search</string>
 </resources>
