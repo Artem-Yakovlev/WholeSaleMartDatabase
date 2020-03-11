@@ -8,4 +8,14 @@
     <string name="budget">Budget:</string>
     <string name="general_view">General view</string>
     <string name="request_compilation">Request compilation</string>
+    <string name="phone_number">Phone number</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
+    <string name="budget_request">Budget</string>
+    <string name="any">Any</string>
+    <string name="bronze">Bronze</string>
+    <string name="silver">Silver</string>
+    <string name="gold">Gold</string>
+    <string name="choose_status">Choose status:</string>
+    <string name="enter_the_data_for_the_request">Enter the data for the request:</string>
 </resources>
