@@ -4,26 +4,16 @@ import java.math.BigInteger;
 
 public class Customer {
 
-    private int id;
     private String name;
     private String phone;
-    private BigInteger totalPurchases;
+    private BigInteger budget;
     private CustomerStatus customerStatus;
 
-    public Customer(int id, String name, String phone, BigInteger totalPurchases, CustomerStatus customerStatus) {
-        this.id = id;
+    public Customer(String name, String phone, BigInteger budget, CustomerStatus customerStatus) {
         this.name = name;
         this.phone = phone;
-        this.totalPurchases = totalPurchases;
+        this.budget = budget;
         this.customerStatus = customerStatus;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -42,12 +32,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public BigInteger getTotalPurchases() {
-        return totalPurchases;
+    public BigInteger getBudget() {
+        return budget;
     }
 
-    public void setTotalPurchases(BigInteger totalPurchases) {
-        this.totalPurchases = totalPurchases;
+    public void setBudget(BigInteger budget) {
+        this.budget = budget;
     }
 
     public CustomerStatus getCustomerStatus() {

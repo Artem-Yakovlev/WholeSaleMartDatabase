@@ -36,9 +36,9 @@ public class ViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ArrayList<Customer> customers = new ArrayList<>();
 
-        customers.add(new Customer(1, "Artem Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
-        customers.add(new Customer(2, "Artem Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
-        customers.add(new Customer(3, "Artem Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
+        customers.add(new Customer( "Artem Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
+        customers.add(new Customer( "Artem Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
+        customers.add(new Customer( "Artem Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
 
 
         recyclerView.setAdapter(new MainRecyclerViewAdapter(getContext(), customers));

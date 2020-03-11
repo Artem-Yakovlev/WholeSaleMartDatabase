@@ -26,7 +26,7 @@ class MainViewHolder extends RecyclerView.ViewHolder {
         ((TextView) view.findViewById(R.id.customer_card_phone)).setText(customer.getPhone());
 
         ((TextView) view.findViewById(R.id.customer_card_cash))
-                .setText("$ " + customer.getTotalPurchases().toString(10));
+                .setText("$ " + customer.getBudget().toString(10));
 
         int statusImageId = 0;
 
