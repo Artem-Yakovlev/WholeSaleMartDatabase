@@ -22,6 +22,7 @@
         android:gravity="center">
 
         <Button
+            android:visibility="gone"
             android:id="@+id/settings_export_excel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +35,7 @@
             android:id="@+id/settings_delete_database"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete_database"
+            android:text="@string/clean_database"
             android:textColor="@color/colorWhite"
             android:theme="@style/FormButton"/>
 

@@ -16,10 +16,12 @@ import java.text.MessageFormat;
 class MainViewHolder extends RecyclerView.ViewHolder {
 
     private View view;
+    private OnItemClicked onItemClickedListener;
 
-    MainViewHolder(@NonNull View itemView) {
+    MainViewHolder(@NonNull View itemView, OnItemClicked onItemClickedListener) {
         super(itemView);
         this.view = itemView;
+        this.onItemClickedListener = onItemClickedListener;
     }
 
     void bindData(Customer customer) {
@@ -49,7 +51,9 @@ class MainViewHolder extends RecyclerView.ViewHolder {
                 .load(statusImageId)
                 .into((ImageView) view.findViewById(R.id.customer_card_status));
 
-
+        view.setOnClickListener(v -> {
+            onItemClickedListener.onItemClicked(customer.getPhone());
+        });
     }
 
 }

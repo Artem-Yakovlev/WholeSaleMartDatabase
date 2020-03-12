@@ -41,7 +41,7 @@
                 android:hint="@string/name_req">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_request_input"
+                    android:id="@+id/name_edit_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -57,7 +57,7 @@
                 android:hint="@string/surname_req">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/surname_request_input"
+                    android:id="@+id/surname_edit_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -87,7 +87,7 @@
                 android:hint="@string/phone_number_req">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phone_number_request_input"
+                    android:id="@+id/phone_number_edit_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -118,7 +118,7 @@
                 android:hint="@string/budget_req">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/budget_request_input"
+                    android:id="@+id/budget_edit_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -153,14 +153,14 @@
                 android:textColor="@color/colorPrimaryDark"/>
 
             <RadioGroup
-                android:id="@+id/radio_group_request_status"
+                android:id="@+id/radio_group_edit_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_horizontal">
 
                 <RadioButton
-                    android:id="@+id/radio_status_gold"
+                    android:id="@+id/radio_edit_status_gold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gold"
@@ -169,7 +169,7 @@
                     android:layout_marginStart="5dp"/>
 
                 <RadioButton
-                    android:id="@+id/radio_status_silver"
+                    android:id="@+id/radio_edit_status_silver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/silver"
@@ -178,7 +178,7 @@
                     android:layout_marginStart="7dp"/>
 
                 <RadioButton
-                    android:id="@+id/radio_status_bronze"
+                    android:id="@+id/radio_edit_status_bronze"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bronze"
@@ -199,7 +199,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/search_request_button"
+            android:id="@+id/edit_item_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/complete"

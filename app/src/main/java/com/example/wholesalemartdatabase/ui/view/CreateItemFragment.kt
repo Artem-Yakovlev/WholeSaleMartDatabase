@@ -46,6 +46,7 @@ class CreateItemFragment : Fragment() {
 
                 if (DataBase.getInstance().addNewCustomer(customer)) {
                     val navController = NavHostFragment.findNavController(this)
+                    DataBase.getInstance().saveData()
                     navController.popBackStack()
                 } else {
                     Toast.makeText(context, "A client with such a phone exists", Toast.LENGTH_LONG).show()
@@ -79,7 +80,6 @@ class CreateItemFragment : Fragment() {
         val surname = surname_create_input.text.toString().trim()
         val phoneNumber = phone_number_create_input.text.toString().trim()
         val budget = budget_create_input.text.toString().trim()
-        BigInteger(budget_create_input.text.toString().trim(), 10)
 
         var correct = true
 

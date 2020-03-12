@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        DataBase.setDatabaseFullFilePath(this.filesDir.path.toString() + "/" + DataBase.DATABASE_FILENAME)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }

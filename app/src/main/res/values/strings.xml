@@ -22,10 +22,8 @@
     <string name="search_results">Search results</string>
     <string name="various_actions">Various actions</string>
     <string name="export_to_excel">Export to Excel</string>
-    <string name="delete_database">Delete database</string>
+    <string name="clean_database">Clean database</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_new_customer">Add new customer</string>
     <string name="name_req">name*</string>
     <string name="surname_req">surname*</string>

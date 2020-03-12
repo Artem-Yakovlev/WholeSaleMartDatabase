@@ -20,12 +20,13 @@ import com.example.wholesalemartdatabase.data.Customer;
 import com.example.wholesalemartdatabase.data.CustomerStatus;
 import com.example.wholesalemartdatabase.domain.DataBase;
 import com.example.wholesalemartdatabase.ui.mainrecyclerview.MainRecyclerViewAdapter;
+import com.example.wholesalemartdatabase.ui.mainrecyclerview.OnItemClicked;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class ViewFragment extends Fragment {
+public class ViewFragment extends Fragment implements OnItemClicked {
 
     private RecyclerView recyclerView;
     private MainRecyclerViewAdapter mainRecyclerViewAdapter;
@@ -46,7 +47,7 @@ public class ViewFragment extends Fragment {
         navHostController = NavHostFragment.findNavController(this);
 
         ArrayList<Customer> customers = new ArrayList<>(DataBase.getInstance().getCustomerArrayMap().values());
-        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(getContext(), customers);
+        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(getContext(), customers, this);
         recyclerView.setAdapter(mainRecyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
                 false));
@@ -63,5 +64,10 @@ public class ViewFragment extends Fragment {
         if (mainRecyclerViewAdapter != null) {
             mainRecyclerViewAdapter.refreshData(new ArrayList<>(DataBase.getInstance().getCustomerArrayMap().values()));
         }
+    }
+
+    @Override
+    public void onItemClicked(String PhoneNumber) {
+
     }
 }

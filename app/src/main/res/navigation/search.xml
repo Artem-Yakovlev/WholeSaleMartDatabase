@@ -18,5 +18,13 @@
         android:id="@+id/searchResultFragment"
         android:name="com.example.wholesalemartdatabase.ui.search.SearchResultFragment"
         android:label="fragment_search_result"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_editItemFragment2"
+            app:destination="@id/editItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.example.wholesalemartdatabase.ui.view.EditItemFragment"
+        android:label="EditItemFragment" />
 </navigation>

@@ -9,26 +9,31 @@ import com.example.wholesalemartdatabase.data.CustomerStatus;
 import com.example.wholesalemartdatabase.utils.CollectionUtils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class DataBase {
     private static DataBase instance;
 
-    private final static String DATABASE_FILENAME = "database.txt";
+    public final static String DATABASE_FILENAME = "database.txt";
+    private static String DATABASE_FULL_FILE_PATH;
 
-    private ArrayMap<String, Customer> customerArrayMap;
+    private ArrayMap<String, Customer> customerArrayMap = new ArrayMap<>();
 
-    private HashMap<String, ArrayList<Customer>> hashMapCustomerName;
-    private HashMap<String, ArrayList<Customer>> hashMapCustomerSurname;
-    private HashMap<BigInteger, ArrayList<Customer>> hashMapCustomerBudget;
-    private HashMap<CustomerStatus, ArrayList<Customer>> hashMapCustomerStatus;
+    private HashMap<String, ArrayList<Customer>> hashMapCustomerName = new HashMap<>();
+    private HashMap<String, ArrayList<Customer>> hashMapCustomerSurname = new HashMap<>();
+    private HashMap<BigInteger, ArrayList<Customer>> hashMapCustomerBudget = new HashMap<>();
+    private HashMap<CustomerStatus, ArrayList<Customer>> hashMapCustomerStatus = new HashMap<>();
 
     private DataBase() {
         readDataBase();
@@ -50,23 +55,19 @@ public class DataBase {
     }
 
     private void readDataBase() {
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(DATABASE_FILENAME)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(DATABASE_FULL_FILE_PATH)))) {
             String line;
             customerArrayMap = new ArrayMap<>();
             while ((line = reader.readLine()) != null) {
                 Customer customer = CustomerUtils.parseCustomerFromString(line);
                 addNewCustomer(customer);
             }
-
-
         } catch (FileNotFoundException e) {
-            Log.d("ASMR", e.toString());
-            customerArrayMap = new ArrayMap<>();
-            hashMapCustomerName = new HashMap<>();
-            hashMapCustomerSurname = new HashMap<>();
-            hashMapCustomerBudget = new HashMap<>();
-            hashMapCustomerStatus = new HashMap<>();
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DATABASE_FULL_FILE_PATH)))) {
+                bufferedWriter.write("");
+            } catch (IOException ex) {
+                Log.d("ASMR", ex.toString());
+            }
         } catch (IOException e) {
             Log.d("ASMR", e.toString());
             e.printStackTrace();
@@ -231,6 +232,34 @@ public class DataBase {
         }
 
         customerArrayMap.remove(phoneNumber);
+    }
+
+    public void saveData() {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DATABASE_FULL_FILE_PATH)))) {
+            for (Customer customer : customerArrayMap.values()) {
+                bufferedWriter.write(CustomerUtils.parseCustomerToString(customer));
+            }
+        } catch (IOException ex) {
+            Log.d("ASMR", ex.toString());
+        }
+    }
+
+    public static void setDatabaseFullFilePath(String databaseFullFilePath) {
+        DATABASE_FULL_FILE_PATH = databaseFullFilePath;
+    }
+
+    public void cleanData() {
+        customerArrayMap = new ArrayMap<>();
+        hashMapCustomerName = new HashMap<>();
+        hashMapCustomerSurname = new HashMap<>();
+        hashMapCustomerBudget = new HashMap<>();
+        hashMapCustomerStatus = new HashMap<>();
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DATABASE_FULL_FILE_PATH)))) {
+            bufferedWriter.write("");
+        } catch (IOException ex) {
+            Log.d("ASMR", ex.toString());
+        }
+
     }
 }
 

@@ -16,10 +16,12 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
 
     private Context context;
     private ArrayList<Customer> customers;
+    private OnItemClicked onItemClickedListener;
 
-    public MainRecyclerViewAdapter(Context context, ArrayList<Customer> customers) {
+    public MainRecyclerViewAdapter(Context context, ArrayList<Customer> customers, OnItemClicked onItemClickedListener) {
         this.context = context;
         this.customers = customers;
+        this.onItemClickedListener = onItemClickedListener;
     }
 
     @NonNull
@@ -27,7 +29,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MainViewHolder(LayoutInflater
                 .from(context)
-                .inflate(R.layout.customer_card_layout, parent, false));
+                .inflate(R.layout.customer_card_layout, parent, false), onItemClickedListener);
     }
 
     @Override
