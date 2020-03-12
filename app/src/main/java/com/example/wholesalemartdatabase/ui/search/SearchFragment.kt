@@ -7,11 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.wholesalemartdatabase.R
+import com.example.wholesalemartdatabase.data.CustomerStatus
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.*
 
 
 class SearchFragment : Fragment() {
@@ -23,12 +26,24 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preparePhoneInput()
-
+        radio_group_request_status.check(R.id.radio_status_any)
         val navController = NavHostFragment.findNavController(this)
 
         search_request_button.setOnClickListener {
             if (checkCorrectRequest()) {
-                navController.navigate(R.id.searchResultFragment)
+                val bundle = Bundle()
+                bundle.putString("request_name", name_request_input.text.toString().trim().toLowerCase(Locale.ROOT))
+                bundle.putString("request_surname", surname_request_input.text.toString().trim().toLowerCase(Locale.ROOT))
+                bundle.putString("request_phone", phone_number_request_input.text.toString().trim())
+                bundle.putString("request_budget", budget_request_input.text.toString().trim())
+                bundle.putInt("request_status", when(radio_group_request_status.checkedRadioButtonId) {
+                    R.id.radio_status_gold -> 0
+                    R.id.radio_status_silver -> 1
+                    R.id.radio_status_bronze -> 2
+                    else -> -1
+                })
+
+                navController.navigate(R.id.searchResultFragment, bundle)
             }
         }
     }
@@ -68,8 +83,7 @@ class SearchFragment : Fragment() {
                 name_request_input.text.toString().trim() == "" &&
                 surname_request_input.text.toString().trim() == "" &&
                 budget_request_input.text.toString().trim() == "" &&
-                (radio_group_request_status.checkedRadioButtonId == R.id.radio_status_any ||
-                        radio_group_request_status.checkedRadioButtonId == -1)
+                (radio_group_request_status.checkedRadioButtonId == R.id.radio_status_any)
     }
 
     private fun correctNameAndSurnameCheck(): Boolean {

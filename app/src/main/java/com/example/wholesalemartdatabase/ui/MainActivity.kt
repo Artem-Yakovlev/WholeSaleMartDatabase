@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.wholesalemartdatabase.R
+import com.example.wholesalemartdatabase.domain.DataBase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -37,5 +38,7 @@ class MainActivity : AppCompatActivity() {
                 containerId = R.id.nav_host_container,
                 intent = intent
         )
+
+        val dataBase = DataBase.getInstance()
     }
 }

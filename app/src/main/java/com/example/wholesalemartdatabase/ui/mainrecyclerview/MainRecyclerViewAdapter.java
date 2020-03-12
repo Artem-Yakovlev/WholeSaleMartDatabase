@@ -39,4 +39,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
     public int getItemCount() {
         return customers.size();
     }
+
+    public void refreshData(ArrayList<Customer> customers) {
+        this.customers = customers;
+        notifyDataSetChanged();
+    }
 }

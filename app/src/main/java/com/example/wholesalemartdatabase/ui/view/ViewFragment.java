@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.wholesalemartdatabase.R;
 import com.example.wholesalemartdatabase.data.Customer;
 import com.example.wholesalemartdatabase.data.CustomerStatus;
+import com.example.wholesalemartdatabase.domain.DataBase;
 import com.example.wholesalemartdatabase.ui.mainrecyclerview.MainRecyclerViewAdapter;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -24,7 +28,9 @@ import java.util.ArrayList;
 public class ViewFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private MainRecyclerViewAdapter mainRecyclerViewAdapter;
     private FloatingActionButton floatingActionButton;
+    private NavController navHostController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,29 +43,25 @@ public class ViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<Customer> customers = new ArrayList<>();
+        navHostController = NavHostFragment.findNavController(this);
 
-        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
-        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
-        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
-
-        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
-        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
-        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
-
-        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
-        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
-        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
-
-        customers.add(new Customer("Artem", "Bagrenec", "+79056644712", new BigInteger("6000", 10), CustomerStatus.GOLD));
-        customers.add(new Customer("Artem", "Shrek", "+79056644710", new BigInteger("2000", 10), CustomerStatus.SILVER));
-        customers.add(new Customer("Artem", "Rudoi", "+79056644711", new BigInteger("400", 10), CustomerStatus.BRONZE));
-
-
-        recyclerView.setAdapter(new MainRecyclerViewAdapter(getContext(), customers));
+        ArrayList<Customer> customers = new ArrayList<>(DataBase.getInstance().getCustomerArrayMap().values());
+        MainRecyclerViewAdapter mainRecyclerViewAdapter = new MainRecyclerViewAdapter(getContext(), customers);
+        recyclerView.setAdapter(mainRecyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
                 false));
 
         floatingActionButton.attachToRecyclerView(recyclerView);
+        floatingActionButton.setOnClickListener(v -> {
+            navHostController.navigate(R.id.createItemFragment);
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mainRecyclerViewAdapter != null) {
+            mainRecyclerViewAdapter.refreshData(new ArrayList<>(DataBase.getInstance().getCustomerArrayMap().values()));
+        }
     }
 }

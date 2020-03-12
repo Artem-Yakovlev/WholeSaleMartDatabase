@@ -10,12 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wholesalemartdatabase.R
 import com.example.wholesalemartdatabase.data.Customer
 import com.example.wholesalemartdatabase.data.CustomerStatus
+import com.example.wholesalemartdatabase.domain.DataBase
 import com.example.wholesalemartdatabase.ui.mainrecyclerview.MainRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_search_result.*
 import java.math.BigInteger
 
 
 class SearchResultFragment : Fragment() {
+
+    private var mainRecyclerViewAdapter: MainRecyclerViewAdapter? = null
+    private var customers = ArrayList<Customer>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -27,16 +31,24 @@ class SearchResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = NavHostFragment.findNavController(this)
 
-        val customers = ArrayList<Customer>()
-
-
-        customers.add(Customer("Artem", "Bagrenec", "+79056644712", BigInteger("6000", 10), CustomerStatus.GOLD))
-        customers.add(Customer("Artem", "Shrek", "+79056644710", BigInteger("2000", 10), CustomerStatus.SILVER))
-        customers.add(Customer("Artem", "Rudoi", "+79056644711", BigInteger("400", 10), CustomerStatus.BRONZE))
+        customers = DataBase.getInstance().search(arguments)
 
         search_results_recycler_view.adapter = MainRecyclerViewAdapter(context, customers)
         search_results_recycler_view.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
         search_results_toolbar.setNavigationOnClickListener { navController.popBackStack() }
+
+        results_all_delete_button.setOnClickListener {
+            for (customer in customers) {
+                DataBase.getInstance().removeCustomerByPhone(customer.phone)
+            }
+            navController.popBackStack()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        customers = DataBase.getInstance().search(arguments);
+        mainRecyclerViewAdapter?.refreshData(customers)
     }
 }
