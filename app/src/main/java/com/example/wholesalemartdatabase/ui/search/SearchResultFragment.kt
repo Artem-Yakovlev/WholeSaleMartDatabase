@@ -45,14 +45,12 @@ class SearchResultFragment : Fragment(), OnItemClicked {
             for (customer in customers) {
                 DataBase.getInstance().removeCustomerByPhone(customer.phone)
             }
-            DataBase.getInstance().saveData()
             navController.popBackStack()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        customers = DataBase.getInstance().search(arguments);
         mainRecyclerViewAdapter?.refreshData(customers)
     }
 

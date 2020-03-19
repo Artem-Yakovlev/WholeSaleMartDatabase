@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         DataBase.setDatabaseFullFilePath(this.filesDir.path.toString() + "/" + DataBase.DATABASE_FILENAME)
+        DataBase.getInstance()
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
@@ -39,7 +40,10 @@ class MainActivity : AppCompatActivity() {
                 containerId = R.id.nav_host_container,
                 intent = intent
         )
+    }
 
-        val dataBase = DataBase.getInstance()
+    override fun onPause() {
+        super.onPause()
+        DataBase.getInstance().saveData()
     }
 }

@@ -87,7 +87,6 @@ class SearchFragment : Fragment() {
     }
 
     private fun correctNameAndSurnameCheck(): Boolean {
-        //TODO("Need refactor")
         val name = name_request_input.text.toString().trim()
         val surname = surname_request_input.text.toString().trim()
         val phoneNumber = phone_number_request_input.text.toString().trim()

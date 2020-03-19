@@ -46,7 +46,6 @@ class CreateItemFragment : Fragment() {
 
                 if (DataBase.getInstance().addNewCustomer(customer)) {
                     val navController = NavHostFragment.findNavController(this)
-                    DataBase.getInstance().saveData()
                     navController.popBackStack()
                 } else {
                     Toast.makeText(context, "A client with such a phone exists", Toast.LENGTH_LONG).show()

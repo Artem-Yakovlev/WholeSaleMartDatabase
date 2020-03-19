@@ -57,4 +57,15 @@ public class Customer {
     public void setCustomerStatus(CustomerStatus customerStatus) {
         this.customerStatus = customerStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", budget=" + budget +
+                ", customerStatus=" + customerStatus +
+                '}';
+    }
 }

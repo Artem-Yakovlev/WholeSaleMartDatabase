@@ -64,7 +64,6 @@ class EditItemFragment : Fragment() {
                     if (!DataBase.getInstance().customerArrayMap.contains(customer.phone) || customer.phone.equals(phoneNumber)) {
                         DataBase.getInstance().removeCustomerByPhone(phoneNumber)
                         DataBase.getInstance().addNewCustomer(customer)
-                        DataBase.getInstance().saveData()
                         val navController = NavHostFragment.findNavController(this)
                         navController.popBackStack()
                     } else {

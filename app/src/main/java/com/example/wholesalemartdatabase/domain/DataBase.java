@@ -181,14 +181,17 @@ public class DataBase {
                     customerStatus = CustomerStatus.SILVER;
                     break;
             }
-
-            if (hashMapCustomerStatus.containsKey(customerStatus)) {
-                ArrayList<Customer> customers = hashMapCustomerStatus.get(customerStatus);
-                if (results.size() == 0) {
-                    results.addAll(customers);
-                } else {
-                    results = (ArrayList<Customer>) CollectionUtils.union(results, customers);
+            if (results.size() == 0) {
+                results = hashMapCustomerStatus.get(customerStatus);
+            }
+            else if (hashMapCustomerStatus.containsKey(customerStatus)) {
+                ArrayList<Customer> statusResults = new ArrayList<>();
+                for (int i = 0; i < results.size(); i++) {
+                    if (results.get(i).getCustomerStatus() == customerStatus) {
+                        statusResults.add(results.get(i));
+                    }
                 }
+                results = statusResults;
             } else {
                 return new ArrayList<>();
             }
