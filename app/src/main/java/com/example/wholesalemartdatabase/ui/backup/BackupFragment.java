@@ -17,13 +17,14 @@ import com.example.wholesalemartdatabase.domain.DataBase;
 
 public class BackupFragment extends Fragment {
 
-    Button cleanData;
+    Button cleanData, convertCSV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_backup, container, false);
         cleanData = root.findViewById(R.id.settings_delete_database);
+        convertCSV = root.findViewById(R.id.settings_export_csv);
         return root;
     }
 
@@ -33,5 +34,7 @@ public class BackupFragment extends Fragment {
         cleanData.setOnClickListener(v -> {
             DataBase.getInstance().cleanData();
         });
+
+        convertCSV.setOnClickListener(v -> DataBase.getInstance().convertCSV());
     }
 }

@@ -23,10 +23,15 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class DataBase {
+    private final static String DATABASE_ERROR_TAG = "ASMR";
+
     private static DataBase instance;
 
     public final static String DATABASE_FILENAME = "database.txt";
     private static String DATABASE_FULL_FILE_PATH;
+
+    public final static String CONVERTED_DATABASE_FILENAME = "converted_database.csv";
+    private static String CONVERTED_DATABASE_FULL_FILE_PATH;
 
     private ArrayMap<String, Customer> customerArrayMap = new ArrayMap<>();
 
@@ -66,10 +71,10 @@ public class DataBase {
             try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DATABASE_FULL_FILE_PATH)))) {
                 bufferedWriter.write("");
             } catch (IOException ex) {
-                Log.d("ASMR", ex.toString());
+                Log.d(DATABASE_ERROR_TAG, ex.toString());
             }
         } catch (IOException e) {
-            Log.d("ASMR", e.toString());
+            Log.d(DATABASE_ERROR_TAG, e.toString());
             e.printStackTrace();
         }
     }
@@ -243,12 +248,16 @@ public class DataBase {
                 bufferedWriter.write(CustomerUtils.parseCustomerToString(customer));
             }
         } catch (IOException ex) {
-            Log.d("ASMR", ex.toString());
+            Log.d(DATABASE_ERROR_TAG, ex.toString());
         }
     }
 
     public static void setDatabaseFullFilePath(String databaseFullFilePath) {
         DATABASE_FULL_FILE_PATH = databaseFullFilePath;
+    }
+
+    public static void setConvertedDatabaseFullFilePath(String convertedDatabaseFullFilePath) {
+        CONVERTED_DATABASE_FULL_FILE_PATH = convertedDatabaseFullFilePath;
     }
 
     public void cleanData() {
@@ -260,9 +269,21 @@ public class DataBase {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DATABASE_FULL_FILE_PATH)))) {
             bufferedWriter.write("");
         } catch (IOException ex) {
-            Log.d("ASMR", ex.toString());
+            Log.d(DATABASE_ERROR_TAG, ex.toString());
         }
 
+    }
+
+    public void convertCSV() {
+        Log.d(DATABASE_ERROR_TAG, "Hllo");
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONVERTED_DATABASE_FULL_FILE_PATH)))) {
+            bufferedWriter.write("name,surname,phone,budget,status\n");
+            for (Customer customer : customerArrayMap.values()) {
+                bufferedWriter.write(CustomerUtils.parseCustomerToCsvString(customer));
+            }
+        } catch (IOException ex) {
+            Log.d(DATABASE_ERROR_TAG, ex.toString());
+        }
     }
 }
 

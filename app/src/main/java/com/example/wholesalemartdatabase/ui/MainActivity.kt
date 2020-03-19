@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         DataBase.setDatabaseFullFilePath(this.filesDir.path.toString() + "/" + DataBase.DATABASE_FILENAME)
+        DataBase.setConvertedDatabaseFullFilePath(this.filesDir.path.toString() + "/" + DataBase.CONVERTED_DATABASE_FILENAME)
         DataBase.getInstance()
         if (savedInstanceState == null) {
             setupBottomNavigationBar()

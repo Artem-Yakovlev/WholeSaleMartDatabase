@@ -27,4 +27,8 @@ public class CustomerUtils {
     public static String parseCustomerToString(Customer customer) {
         return customer.getName() + " " + customer.getSurname() + " " + customer.getPhone() + " " + customer.getBudget() + " " + customer.getCustomerStatus() + "\n";
     }
+
+    public static String parseCustomerToCsvString(Customer customer) {
+        return customer.getName() + "," + customer.getSurname() + "," + customer.getPhone() + "," + customer.getBudget() + "," + customer.getCustomerStatus() + "\n";
+    }
 }

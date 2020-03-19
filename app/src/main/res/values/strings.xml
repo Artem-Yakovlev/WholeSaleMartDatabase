@@ -21,7 +21,7 @@
     <string name="search">Search</string>
     <string name="search_results">Search results</string>
     <string name="various_actions">Various actions</string>
-    <string name="export_to_excel">Export to Excel</string>
+    <string name="export_to_excel">Export to csv</string>
     <string name="clean_database">Clean database</string>
 
     <string name="add_new_customer">Add new customer</string>
