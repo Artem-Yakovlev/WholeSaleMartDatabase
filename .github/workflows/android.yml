@@ -34,12 +34,12 @@ jobs:
       if: failure()
       with:
         name: lint results
-        path: ${LINT_RESULTS_PATH}
+        path: $LINT_RESULTS_PATH
       
     - name: create apk
       uses: actions/upload-artifact@v1 
       if: success()
       with:
-        name: ${DEBUG_APK_NAME}
-        path: ${DEBUG_APK_PATH}
+        name: $DEBUG_APK_NAME
+        path: $DEBUG_APK_PATH
   
